@@ -44,21 +44,11 @@ public:
             
         }
         i=i+1;
-        cout << "value of i:" << i << endl;
         int max = 1;
         for (; i < vector.size(); i++)
         {
             max++;
         }
-        cout << "string in the form of vector:";
-        for (int j = 0; j < vector.size(); j++)
-        {
-            cout << vector[j];
-        }
-        cout << endl;
-        
-        cout << "value of count:" << count << endl;
-        cout << "value of spaces:" << spaces << endl;
         return max;
     }
 };
