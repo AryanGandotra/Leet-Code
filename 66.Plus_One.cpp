@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution
 {
 public:
@@ -76,17 +72,3 @@ public:
         return digits;
     }
 };
-int main()
-{
-    Solution s1;
-    vector<int> digits;
-    int a[] = {9, 9};
-    digits.assign(a, a + 2);
-    s1.plusOne(digits);
-    for (int i = 0; i < digits.size(); i++)
-    {
-        cout << digits[i] << " ";
-    }
-    cout << endl;
-    return 0;
-}

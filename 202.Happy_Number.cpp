@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
 class Solution
 {
 public:
@@ -19,12 +16,12 @@ public:
         for (int i = 0; i < number.size(); i++)
         {
             sum = sum + number[i];
-            // cout << number[i] << "      ";
+            cout << number[i] << "      ";
         }
         number.clear();
-        // cout << "sum: " << sum;
+        cout << "sum: " << sum;
 
-        // cout << endl;
+        cout << endl;
         if (sum == 1)
         {
             a = true;
@@ -63,26 +60,13 @@ public:
         {
             while (!isOne())
             {
-                n = split(&n);
                 if (a == true)
                 {
                     return true;
                 }
-            }
+                n = split(&n);
+                        }
         }
         return false;
     }
 };
-int main()
-{
-    Solution S1;
-    if (S1.isHappy(536))
-    {
-        cout << "happy";
-    }
-    else
-    {
-        cout << "not happy";
-    }
-    cout << endl;
-}

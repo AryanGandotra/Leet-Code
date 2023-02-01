@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 class Solution
 {
 public:
@@ -7,7 +5,7 @@ public:
     {
         if (x == 0 || x == 1)
             return x;
-        int i = 1, result = 1;
+        double i = 1, result = 1;
         while (result <= x)
         {
             i++;
@@ -16,10 +14,3 @@ public:
         return i - 1;
     }
 };
-
-int main()
-{
-    Solution S1;
-    cout<<S1.mySqrt(8)<<endl;
-    return 0;
-}
