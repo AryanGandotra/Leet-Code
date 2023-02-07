@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
@@ -27,17 +24,3 @@ public:
         
     }
 };
-int main()
-{
-
-    Solution s1;
-
-    vector<int> nums;
-
-    nums.push_back(1);
-    nums.push_back(3);
-    nums.push_back(5);
-    nums.push_back(6);
-
-    cout << s1.searchInsert(nums, 2)<<endl;
-}
