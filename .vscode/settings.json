@@ -1,0 +1,5 @@
+{
+  "terminal.integrated.altClickMovesCursor": true,
+  "editor.columnSelection": false,
+  "csv-edit.doubleClickColumnHandleForcedWith": 0
+}
