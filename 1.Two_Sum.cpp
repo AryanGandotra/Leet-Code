@@ -9,6 +9,7 @@ public:
 
         for (int i = 0; i < nums.size(); i++)
         {
+            // check if target - nums[i] element is present in the map if yes return the indices else push the element along with its index in the map
             if (map1.find(target - nums[i]) == map1.end())
                 map1[nums[i]] = i;
 
