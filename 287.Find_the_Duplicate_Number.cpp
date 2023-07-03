@@ -3,22 +3,44 @@ class Solution
 public:
     int findDuplicate(vector<int> &nums)
     {
-        set<int> numbers;
-        int ans;
 
-        for (int i = 0; i < nums.size(); i++)
+        int tortoise = nums[0];
+        int hare = nums[0];
+
+        do
         {
-            if (numbers.find(nums[i]) == numbers.end())
-                numbers.insert(nums[i]);
-            else
-            {
-                ans = nums[i];
-                break;
-            }
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+
+        tortoise = nums[0];
+        while (tortoise != hare)
+        {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
         }
-        return ans;
+
+        return hare;
     }
 };
+
+// class Solution {
+// public:
+//     int findDuplicate(vector<int>& nums) {
+//         set<int> numbers;
+//         int ans;
+
+//         for(int i=0;i<nums.size();i++){
+//             if(numbers.find(nums[i])==numbers.end())
+//                 numbers.insert(nums[i]);
+//             else{
+//                 ans = nums[i];
+//                 break;
+//             }
+//         }
+//         return ans;
+//     }
+// };
 
 // class Solution {
 // public:
