@@ -1,26 +1,21 @@
 class Solution
 {
 public:
-    int calculateSum(vector<int> &nums)
-    {
-        int sum = 0;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            sum += nums[i];
-        }
-        return sum;
-    }
     int pivotIndex(vector<int> &nums)
     {
-        int sum = calculateSum(nums);
-        int sum_current = 0;
+        int total_sum = 0;
+        for (int x : nums)
+        {
+            total_sum += x;
+        }
+        int curr_sum = 0;
         for (int i = 0; i < nums.size(); i++)
         {
-            if ((2 * (sum_current) + nums[i]) == sum)
+            if (2 * curr_sum == total_sum - nums[i])
             {
                 return i;
             }
-            sum_current = sum_current + nums[i];
+            curr_sum += nums[i];
         }
         return -1;
     }
