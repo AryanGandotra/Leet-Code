@@ -3,27 +3,17 @@ class Solution
 public:
     int arraySign(vector<int> &nums)
     {
-        unsigned int product = 1;
-        int numberOfNegatives = 0;
-        for (int i = 0; i < nums.size(); i++)
+        int product = 1;
+        for (int i : nums)
         {
-            if (nums[i] == 0)
-            {
+            if (i == 0)
                 return 0;
-            }
-            product = product * nums[i];
-            if (nums[i] < 0)
-            {
-                numberOfNegatives++;
-            }
+            if (i < 0)
+                product *= -1;
         }
-        if (numberOfNegatives % 2 == 1)
-        {
-            return -1;
-        }
-        else
-        {
+
+        if (product > 0)
             return 1;
-        }
+        return -1;
     }
 };
