@@ -13,31 +13,44 @@ class Solution
 public:
     ListNode *middleNode(ListNode *head)
     {
-        int numberOfNodes = 0;
         if (head->next == NULL)
-        {
             return head;
-        }
-        ListNode *p = head;
-        ListNode *q = head;
-        while (p != NULL)
+        ListNode *slow = head, *fast = head->next;
+
+        while (fast != NULL)
         {
-            numberOfNodes++;
-            p = p->next;
+            fast = fast->next;
+            if (fast != NULL)
+                fast = fast->next;
+            slow = slow->next;
         }
-        if (numberOfNodes == 2)
-        {
-            return head->next;
-        }
-        cout << numberOfNodes << endl;
-        if (numberOfNodes % 2 == 0)
-        {
-            numberOfNodes += 1;
-        }
-        for (int i = 0; i < numberOfNodes / 2; i++)
-        {
-            q = q->next;
-        }
-        return q;
+        return slow;
     }
 };
+
+// class Solution {
+// public:
+//     ListNode* middleNode(ListNode* head) {
+//         int numberOfNodes=0;
+//         if(head->next==NULL){
+//             return head;
+//         }
+//         ListNode *p=head;
+//         ListNode *q=head;
+//         while(p!=NULL){
+//             numberOfNodes++;
+//             p=p->next;
+//         }
+//         if(numberOfNodes==2){
+//             return head->next;
+//         }
+//         cout<<numberOfNodes<<endl;
+//         if(numberOfNodes%2==0){
+//             numberOfNodes+=1;
+//         }
+//         for(int i=0;i<numberOfNodes/2;i++){
+//             q=q->next;
+//         }
+//         return q;
+//     }
+// };
