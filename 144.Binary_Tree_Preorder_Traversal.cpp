@@ -9,31 +9,71 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+//  Morris Traversal Time-O(N) Space-O(1)
 class Solution
 {
 public:
     vector<int> preorderTraversal(TreeNode *root)
     {
         vector<int> ans;
-        stack<TreeNode *> st;
+        if (root == NULL)
+            return ans;
 
-        st.push(root);
+        TreeNode *curr = root, *pre;
 
-        while (!st.empty())
+        while (curr != NULL)
         {
-            TreeNode *curr = st.top();
-            st.pop();
-            if (curr != NULL)
+            if (curr->left == NULL)
             {
                 ans.push_back(curr->val);
-                st.push(curr->right);
-                st.push(curr->left);
+                curr = curr->right;
+            }
+            else
+            {
+                pre = curr->left;
+                while (pre->right != NULL && pre->right != curr)
+                    pre = pre->right;
+
+                if (pre->right == NULL)
+                {
+                    pre->right = curr;
+                    ans.push_back(curr->val);
+                    curr = curr->left;
+                }
+                else
+                {
+                    pre->right = NULL;
+                    curr = curr->right;
+                }
             }
         }
 
         return ans;
     }
 };
+
+// class Solution {
+// public:
+//     vector<int> preorderTraversal(TreeNode* root) {
+//         vector<int> ans;
+//         stack<TreeNode*> st;
+
+//         st.push(root);
+
+//         while(!st.empty()){
+//             TreeNode* curr = st.top();
+//             st.pop();
+//             if(curr!=NULL){
+//                 ans.push_back(curr->val);
+//                 st.push(curr->right);
+//                 st.push(curr->left);
+//             }
+//         }
+
+//         return ans;
+//     }
+// };
 
 // class Solution {
 // public:
