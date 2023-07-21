@@ -9,32 +9,72 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+//  Morris Traversal Time-O(N) Space-O(1)
 class Solution
 {
 public:
     vector<int> inorderTraversal(TreeNode *root)
     {
-        stack<TreeNode *> st;
         vector<int> ans;
-        TreeNode *current = root;
+        if (root == NULL)
+            return ans;
 
-        while (!st.empty() || current != NULL)
+        TreeNode *curr = root, *pre;
+
+        while (curr != NULL)
         {
-            while (current != NULL)
+            if (curr->left == NULL)
             {
-                st.push(current);
-                current = current->left;
+                ans.push_back(curr->val);
+                curr = curr->right;
             }
+            else
+            {
+                pre = curr->left;
+                while (pre->right != NULL && pre->right != curr)
+                    pre = pre->right;
 
-            TreeNode *node = st.top();
-            ans.push_back(node->val);
-            st.pop();
-            current = node->right;
+                if (pre->right == NULL)
+                {
+                    pre->right = curr;
+                    curr = curr->left;
+                }
+                else
+                {
+                    pre->right = NULL;
+                    ans.push_back(curr->val);
+                    curr = curr->right;
+                }
+            }
         }
 
         return ans;
     }
 };
+
+// class Solution {
+// public:
+//     vector<int> inorderTraversal(TreeNode* root) {
+//         stack<TreeNode*> st;
+//         vector<int> ans;
+//         TreeNode* current = root;
+
+//         while(!st.empty() || current!=NULL){
+//             while(current!=NULL){
+//                 st.push(current);
+//                 current=current->left;
+//             }
+
+//             TreeNode* node = st.top();
+//             ans.push_back(node->val);
+//             st.pop();
+//             current=node->right;
+//         }
+
+//         return ans;
+//     }
+// };
 
 // class Solution {
 
