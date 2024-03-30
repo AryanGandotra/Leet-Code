@@ -1,26 +1,19 @@
 // Approach 4 using hashmaps
 
-class Solution
-{
+class Solution {
 public:
-    bool containsDuplicate(vector<int> &nums)
-    {
-        unordered_map<int, int> map1;
+    bool containsDuplicate(vector<int>& nums) {
+        map<int,int> freq;
 
-        for (auto i : nums)
-        {
-            map1[i]++;
-        }
-
-        for (auto i : map1)
-        {
-            if (i.second > 1)
+        for(int x: nums){
+            if(freq[x]>0)
                 return true;
+            freq[x]++;
         }
-
         return false;
     }
 };
+
 
 // Approach 3 using maps
 
