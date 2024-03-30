@@ -3,27 +3,19 @@ class Solution
 public:
     int singleNumber(vector<int> &nums)
     {
-        unordered_map<int, int> map;
-        int a;
-        for (int i = 0; i < nums.size(); i++)
+        map<int, int> freq;
+        for (int x : nums)
         {
-            unordered_map<int, int>::iterator it = map.find(nums[i]);
-            if (it != map.end())
-            {
-                it->second++;
-            }
-            else
-            {
-                map.insert({nums[i], 1});
-            }
+            freq[x]++;
         }
-        for (auto it = map.begin(); it != map.end(); it++)
+
+        int ans;
+
+        for (auto x : freq)
         {
-            if (it->second == 1)
-            {
-                a = it->first;
-            }
+            if (x.second == 1)
+                ans = x.first;
         }
-        return a;
+        return ans;
     }
 };
