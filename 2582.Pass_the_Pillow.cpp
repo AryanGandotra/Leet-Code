@@ -9,15 +9,13 @@ public:
             return n - 1;
 
         int rounds = time / (n - 1);
+        int movesLeft = time - (n - 1) * rounds;
 
         if (rounds % 2 == 0)
         {
-            int movesLeft = time - (n - 1) * rounds;
             return movesLeft + 1;
         }
-
-        int timeLeft = time - (n - 1) * rounds;
-        return n - timeLeft;
+        return n - movesLeft;
     }
 };
 
