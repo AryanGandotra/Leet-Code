@@ -20,17 +20,6 @@ public:
                 st.push(logs[i]);
         }
 
-        int count = 0;
-
-        if (!st.empty())
-        {
-            while (!st.empty())
-            {
-                count++;
-                st.pop();
-            }
-        }
-
-        return count;
+        return st.size();
     }
 };
