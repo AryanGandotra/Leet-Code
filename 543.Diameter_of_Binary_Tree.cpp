@@ -9,36 +9,69 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution
-{
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
 public:
-    pair<int, int> diameterHelper(TreeNode *root)
-    {
-        if (root == NULL)
-        {
-            pair<int, int> p = make_pair(0, 0);
-            return p;
-        }
+    int findMax(TreeNode* node, int& maxi){
+        if(node==NULL)
+            return 0;
 
-        pair<int, int> left = diameterHelper(root->left);
-        pair<int, int> right = diameterHelper(root->right);
+        int lh = findMax(node->left,maxi);
+        int rh = findMax(node->right,maxi);
 
-        int ob1 = left.first;
-        int ob2 = right.first;
-        int ob3 = left.second + right.second;
+        maxi = max(maxi,lh+rh);
 
-        pair<int, int> ans;
-        ans.first = max(ob1, max(ob2, ob3));
-        ans.second = max(left.second, right.second) + 1;
+        return 1 + max(lh,rh);
+    }
 
+    int diameterOfBinaryTree(TreeNode* root) {
+        int ans=0;
+        findMax(root,ans);
         return ans;
     }
-
-    int diameterOfBinaryTree(TreeNode *root)
-    {
-        return diameterHelper(root).first;
-    }
 };
+
+// class Solution
+// {
+// public:
+//     pair<int, int> diameterHelper(TreeNode *root)
+//     {
+//         if (root == NULL)
+//         {
+//             pair<int, int> p = make_pair(0, 0);
+//             return p;
+//         }
+
+//         pair<int, int> left = diameterHelper(root->left);
+//         pair<int, int> right = diameterHelper(root->right);
+
+//         int ob1 = left.first;
+//         int ob2 = right.first;
+//         int ob3 = left.second + right.second;
+
+//         pair<int, int> ans;
+//         ans.first = max(ob1, max(ob2, ob3));
+//         ans.second = max(left.second, right.second) + 1;
+
+//         return ans;
+//     }
+
+//     int diameterOfBinaryTree(TreeNode *root)
+//     {
+//         return diameterHelper(root).first;
+//     }
+// };
 
 // class Solution {
 // public:
