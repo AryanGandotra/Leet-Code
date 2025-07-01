@@ -2,18 +2,18 @@
 
 using namespace std;
 
-void insertAtBottom(stack<int> &s, int x)
+void insertAtBottom(stack<int> &st, int x)
 {
-    if (s.size() == 0)
+    if (st.empty())
     {
-        s.push(x);
+        st.push(x);
     }
     else
     {
-        int a = s.top();
-        s.pop();
-        insertAtBottom(s, x);
-        s.push(a);
+        int a = st.top();
+        st.pop();
+        insertAtBottom(st, x);
+        st.push(a);
     }
 }
 
