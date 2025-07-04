@@ -5,7 +5,7 @@ public:
     {
         if (index == word.length())
             return true;
-        if (row < 0 || col < 0 || row == m || col == n || board[row][col] != word[index] or board[row][col] == '!')
+        if (row < 0 || col < 0 || row == m || col == n || board[row][col] != word[index] || board[row][col] == '!')
             return false;
 
         char c = board[row][col];
