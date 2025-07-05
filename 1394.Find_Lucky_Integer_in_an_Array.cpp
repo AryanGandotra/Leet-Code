@@ -3,35 +3,42 @@ class Solution
 public:
     int findLucky(vector<int> &arr)
     {
-        map<int, int> map1;
+        int freq[501] = {0};
 
-        for (int i = 0; i < arr.size(); i++)
+        for (int num : arr)
         {
-            auto it = map1.find(arr[i]);
-            if (it == map1.end())
-            {
-                map1.insert(it, pair<int, int>(arr[i], 1));
-            }
-            else
-            {
-                it->second++;
-            }
+            freq[num]++;
         }
-        int a = -1;
-        for (auto itr = map1.begin(); itr != map1.end(); ++itr)
+
+        for (int i = 500; i >= 1; --i)
         {
-            if (itr->first == itr->second)
-            {
-                a = itr->first;
-            }
+            if (freq[i] == i)
+                return i;
         }
-        if (a != -1)
-        {
-            return a;
-        }
-        else
-        {
-            return -1;
-        }
+
+        return -1;
     }
 };
+
+// class Solution
+// {
+// public:
+//     int findLucky(vector<int> &arr)
+//     {
+//         map<int, int> mp;
+//         for (auto it : arr)
+//         {
+//             mp[it]++;
+//         }
+
+//         int ans = -1;
+
+//         for (auto it : mp)
+//         {
+//             if (it.first == it.second)
+//                 ans = it.first;
+//         }
+
+//         return ans;
+//     }
+// };
