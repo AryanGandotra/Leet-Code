@@ -3,23 +3,23 @@ class Solution
 public:
     int lengthOfLongestSubstring(string s)
     {
-        set<char> set;
+        int currLength = 0, maxLength = 0;
+        map<char, int> mp;
+        int i = 0, j = 0;
 
-        int i = 0, j = 0, n = s.size(), ans = 0;
-
-        while (i < n && j < n)
+        while (j < s.length())
         {
-            if (set.find(s[j]) == set.end())
+            if (mp.find(s[j]) != mp.end())
             {
-                set.insert(s[j++]);
-                ans = max(ans, j - i);
+                i = max(i, mp[s[j]] + 1);
             }
-            else
-            {
-                set.erase(s[i++]);
-            }
+
+            mp[s[j]] = j;
+            currLength = j - i + 1;
+            maxLength = max(maxLength, currLength);
+            j++;
         }
 
-        return ans;
+        return maxLength;
     }
 };
