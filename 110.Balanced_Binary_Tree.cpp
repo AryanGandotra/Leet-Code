@@ -7,9 +7,12 @@ public:
             return 0;
 
         int l = getHeight(root->left);
+        if (l == -1)
+            return -1;
+
         int r = getHeight(root->right);
 
-        if (l == -1 || r == -1)
+        if (r == -1)
             return -1;
 
         if (abs(l - r) > 1)
