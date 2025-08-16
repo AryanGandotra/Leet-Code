@@ -1,30 +1,57 @@
 class Solution
 {
 public:
-    pair<bool, int> helper(TreeNode *root)
+    int getHeight(TreeNode *root)
     {
         if (root == NULL)
-        {
-            return {true, 0};
-        }
+            return 0;
 
-        pair<bool, int> left = helper(root->left);
-        pair<bool, int> right = helper(root->right);
+        int l = getHeight(root->left);
+        int r = getHeight(root->right);
 
-        int left_balanced = left.first;
-        int right_balanced = right.first;
-        bool heightDiff = abs(left.second - right.second) <= 1;
+        if (l == -1 || r == -1)
+            return -1;
 
-        if (left_balanced && right_balanced && heightDiff)
-        {
-            return {true, max(left.second, right.second) + 1};
-        }
+        if (abs(l - r) > 1)
+            return -1;
 
-        return {false, max(left.second, right.second) + 1};
+        return max(l, r) + 1;
     }
-
-    bool isBalanced(TreeNode *root) { return helper(root).first; }
+    bool isBalanced(TreeNode *root)
+    {
+        if (getHeight(root) == -1)
+            return false;
+        return true;
+    }
 };
+
+// class Solution
+// {
+// public:
+//     pair<bool, int> helper(TreeNode *root)
+//     {
+//         if (root == NULL)
+//         {
+//             return {true, 0};
+//         }
+
+//         pair<bool, int> left = helper(root->left);
+//         pair<bool, int> right = helper(root->right);
+
+//         int left_balanced = left.first;
+//         int right_balanced = right.first;
+//         bool heightDiff = abs(left.second - right.second) <= 1;
+
+//         if (left_balanced && right_balanced && heightDiff)
+//         {
+//             return {true, max(left.second, right.second) + 1};
+//         }
+
+//         return {false, max(left.second, right.second) + 1};
+//     }
+
+//     bool isBalanced(TreeNode *root) { return helper(root).first; }
+// };
 
 // class Solution {
 // public:
