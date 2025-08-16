@@ -1,61 +1,47 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution
 {
 public:
-    int helper(TreeNode *root)
+    int maxDepth(TreeNode *root)
     {
         if (root == NULL)
             return 0;
 
-        return max(helper(root->left), helper(root->right)) + 1;
-    }
-    int maxDepth(TreeNode *root)
-    {
-        return helper(root);
+        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }
 };
-//  Level Order Traversal Approach
 
-// class Solution {
+// class Solution
+// {
 // public:
-//     int maxDepth(TreeNode* root) {
-//         vector<vector<int>> ans;
-
-//         if(root==NULL)
+//     int maxDepth(TreeNode *root)
+//     {
+//         if (root == NULL)
 //             return 0;
 
-//         queue<TreeNode*> q;
+//         queue<TreeNode *> q;
 //         q.push(root);
 
-//         while(!q.empty()){
-//             int n = q.size();
-//             vector<int> a;
+//         int height = 0;
 
-//             for(int i=0;i<n;i++){
-//                 TreeNode* temp = q.front();
+//         while (!q.empty())
+//         {
+//             int level = q.size();
+
+//             for (int i = 0; i < level; i++)
+//             {
+//                 TreeNode *node = q.front();
 //                 q.pop();
-//                 a.push_back(temp->val);
 
-//                 if(temp->left)
-//                     q.push(temp->left);
+//                 if (node->left)
+//                     q.push(node->left);
 
-//                 if(temp->right)
-//                     q.push(temp->right);
+//                 if (node->right)
+//                     q.push(node->right);
 //             }
 
-//             ans.push_back(a);
+//             height++;
 //         }
 
-//         return ans.size();
+//         return height;
 //     }
 // };
