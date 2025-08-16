@@ -9,22 +9,21 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
-// Recursive Approach
-
-class Solution {
+class Solution
+{
 public:
-    int maxDepth(TreeNode* root) {
-        if(root==NULL)
+    int helper(TreeNode *root)
+    {
+        if (root == NULL)
             return 0;
 
-        int x = maxDepth(root->left);
-        int y = maxDepth(root->right);
-
-        return max(x,y)+1;
+        return max(helper(root->left), helper(root->right)) + 1;
+    }
+    int maxDepth(TreeNode *root)
+    {
+        return helper(root);
     }
 };
-
 //  Level Order Traversal Approach
 
 // class Solution {
@@ -37,7 +36,6 @@ public:
 
 //         queue<TreeNode*> q;
 //         q.push(root);
-
 
 //         while(!q.empty()){
 //             int n = q.size();
@@ -61,4 +59,3 @@ public:
 //         return ans.size();
 //     }
 // };
-
