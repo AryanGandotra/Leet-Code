@@ -32,4 +32,4 @@ public:
         }
         return ans;
     }
-};
+};707. Design Linked List
