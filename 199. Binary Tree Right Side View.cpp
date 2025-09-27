@@ -1,58 +1,43 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution
 {
 public:
     vector<int> rightSideView(TreeNode *root)
     {
-        vector<int> result;
+        vector<int> ans;
+        if (!root)
+            return ans;
 
-        if (root == NULL)
-            return result;
+        map<int, int> mapping;
+        queue<pair<int, TreeNode *>> q;
 
-        queue<TreeNode *> q;
-
-        q.push(root);
-
-        vector<vector<int>> ans;
+        q.push({0, root});
 
         while (!q.empty())
         {
-            vector<int> v;
+            pair<int, TreeNode *> nodeDetails = q.front();
+            q.pop();
 
-            int n = q.size();
+            int verticalDistance = nodeDetails.first;
+            TreeNode *node = nodeDetails.second;
 
-            for (int i = 0; i < n; i++)
+            mapping[verticalDistance] = node->val;
+
+            if (node->left)
             {
-                TreeNode *temp = q.front();
-                q.pop();
-
-                v.push_back(temp->val);
-
-                if (temp->left)
-                    q.push(temp->left);
-
-                if (temp->right)
-                    q.push(temp->right);
+                q.push({verticalDistance + 1, node->left});
             }
 
-            ans.push_back(v);
+            if (node->right)
+            {
+                q.push({verticalDistance + 1, node->right});
+            }
         }
 
-        for (int i = 0; i < ans.size(); i++)
+        for (auto x : mapping)
         {
-            result.push_back(ans[i][ans[i].size() - 1]);
+            ans.push_back(x.second);
         }
 
-        return result;
+        return ans;
     }
 };
