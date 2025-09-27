@@ -1,47 +1,20 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution
 {
 public:
-    bool isSameTree(TreeNode *p, TreeNode *q)
+    bool isSymmetricUtil(TreeNode *root1, TreeNode *root2)
     {
-        bool areSame = false;
-        if (p == NULL && q == NULL)
+        if (root1 == NULL || root2 == NULL)
         {
-            return true;
+            return root1 == root2;
         }
-        else if (p == NULL || q == NULL)
-        {
-            return false;
-        }
-        else if (p->val != q->val)
-        {
-            return false;
-        }
-        else
-        {
-            areSame = isSameTree(p->left, q->right);
-            if (areSame)
-                areSame = isSameTree(p->right, q->left);
-        }
-        return areSame;
+        return (root1->val == root2->val) && isSymmetricUtil(root1->left, root2->right) && isSymmetricUtil(root1->right, root2->left);
     }
 
     bool isSymmetric(TreeNode *root)
     {
+        TreeNode *left = root->left;
+        TreeNode *right = root->right;
 
-        TreeNode *root1 = root->left;
-        TreeNode *root2 = root->right;
-
-        return isSameTree(root1, root2);
+        return isSymmetricUtil(left, right);
     }
 };
